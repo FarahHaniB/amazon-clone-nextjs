@@ -18,7 +18,8 @@ const Header = () => {
             src="https://links.papareact.com/f90"
             width={150}
             height={40}
-            objectFit="contain"
+            alt="amazon logo"
+            // objectFit="contain"
             className="cursor-pointer"
           />
         </div>
