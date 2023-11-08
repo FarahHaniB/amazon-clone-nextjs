@@ -3,16 +3,25 @@ import { store } from "../app/store";
 import "../styles/globals.css";
 // import { Provider as AuthProvider } from 'next-auth/react'
 import { SessionProvider } from "next-auth/react";
+import { useState, useEffect } from "react";
 
 const MyApp = ({ Component, pageProps: { session, ...pageProps } }) => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   return (
-    <SessionProvider session={session}>
-      {/* <AuthProvider>
-    <Provider store={store}> */}
-      <Component {...pageProps} />
-      {/* </Provider>
-    </AuthProvider> */}
-    </SessionProvider>
+    <div>
+      {isClient ? (
+        <SessionProvider session={session}>
+          <Component {...pageProps} />
+        </SessionProvider>
+      ) : (
+        "Prerendered"
+      )}
+    </div>
   );
 };
 
