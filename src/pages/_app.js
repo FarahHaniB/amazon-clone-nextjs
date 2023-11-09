@@ -15,9 +15,11 @@ const MyApp = ({ Component, pageProps: { session, ...pageProps } }) => {
   return (
     <div>
       {isClient ? (
+        <Provider store={store}>
         <SessionProvider session={session}>
           <Component {...pageProps} />
         </SessionProvider>
+        </Provider>
       ) : (
         "Prerendered"
       )}

@@ -2,23 +2,40 @@ import Image from "next/image";
 import { StarIcon } from "@heroicons/react/24/solid";
 import { useEffect, useState } from "react";
 import Currency from "react-currency-formatter";
-// import { prime } from "../../public/amazon-prime.png";
+import { useDispatch } from "react-redux";
+import { addToBasket } from "@/slices/basketSlice";
 
 const MAX_RATING = 5;
 const MIN_RATING = 1;
 
 const Product = ({ id, title, price, description, category, image }) => {
+  const dispatch = useDispatch();
+
   const [rating] = useState(
     Math.floor(Math.random() * (MAX_RATING - MIN_RATING + 1)) + MIN_RATING
   );
 
   const [hasPrime] = useState(Math.random() < 0.5);
 
-  const [hasMounted, setHasMounted] = useState(false);
+  const addItemToBasket = () => {
+    const product = {
+      id,
+      title,
+      price,
+      description,
+      category,
+      image,
+    };
 
-  useEffect(() => {
-    setHasMounted(true); //<-- toggle on client-side, because useEffect doesn't run on server-side/during SSG build
-  }, []);
+    //Sending the product as an action to the REDUX store... the basket slice
+    dispatch(addToBasket(product));
+  };
+
+  // const [hasMounted, setHasMounted] = useState(false);
+
+  // useEffect(() => {
+  //   setHasMounted(true); //<-- toggle on client-side, because useEffect doesn't run on server-side/during SSG build
+  // }, []);
 
   return (
     <>
@@ -41,8 +58,8 @@ const Product = ({ id, title, price, description, category, image }) => {
 
         <h4 className="my-3">{title}</h4>
 
-        {/* Only render the SratIcons on client-side, as hasMounted will always be flase on server-side */}
-        {hasMounted && (
+        {/* Only render the StarIcons on client-side, as hasMounted will always be flase on server-side */}
+        {/* {hasMounted && ( */}
           <div className="flex">
             {Array(rating)
               .fill()
@@ -50,7 +67,7 @@ const Product = ({ id, title, price, description, category, image }) => {
                 <StarIcon key={i} className="h-5 text-yellow-500" />
               ))}
           </div>
-        )}
+        {/* )} */}
 
         <p className="text-xs my-2 line-clamp-2">{description}</p>
 
@@ -71,7 +88,9 @@ const Product = ({ id, title, price, description, category, image }) => {
           </div>
         )}
 
-        <button className="mt-auto button">Add to Basket</button>
+        <button onClick={addItemToBasket} className="mt-auto button">
+          Add to Basket
+        </button>
       </div>
     </>
   );
