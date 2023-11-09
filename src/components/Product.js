@@ -59,7 +59,7 @@ const Product = ({ id, title, price, description, category, image }) => {
         </div>
 
         {hasPrime && (
-          <div className="flex items-center space-x-2 -mt-5">
+          <div className="flex items-center space-x-2 -mt-5 mb-4">
             <Image
               src="/amazon-prime.png"
               width={100}
