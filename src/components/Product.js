@@ -22,9 +22,11 @@ const Product = ({ id, title, price, description, category, image }) => {
       id,
       title,
       price,
+      rating,
       description,
       category,
       image,
+      hasPrime
     };
 
     //Sending the product as an action to the REDUX store... the basket slice
@@ -72,7 +74,7 @@ const Product = ({ id, title, price, description, category, image }) => {
         <p className="text-xs my-2 line-clamp-2">{description}</p>
 
         <div className="mb-5">
-          <Currency quantity={price} currency="GBP" />
+          <Currency quantity={price} currency="MYR" />
         </div>
 
         {hasPrime && (
