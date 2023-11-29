@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import Currency from "react-currency-formatter";
 import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
-const stripePromise = loadStripe(process.env.stripe_public_key);
+const stripePromise = loadStripe(`${process.env.stripe_public_key}`);
 
 const Checkout = () => {
   const items = useSelector(selectItems);
