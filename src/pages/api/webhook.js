@@ -124,6 +124,7 @@ const fulfillOrder = async (session) => {
 export default async (req, res) => {
   console.log("Incoming request method:", req.method); // Logging incoming request method
   console.log("Webhook received:", req.method);
+
   if (req.method === "POST") {
     const requestBuffer = await buffer(req);
     const payload = requestBuffer.toString();
@@ -142,6 +143,7 @@ export default async (req, res) => {
     // Verify that the EVENT posted came from stripe
     try {
       event = stripe.webhooks.constructEvent(payload, sig, endpointSecret);
+      res.status(200).send("OK")
     } catch (err) {
       console.log(`ERROR`, err.message);
       return res.status(400).send(`Webhook error: ${err.message}`);
