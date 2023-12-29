@@ -85,7 +85,7 @@ import * as admin from "firebase-admin";
 
 // Secure a connection to FIREBASE from the backend
 // const serviceAccount = require("../../../permissions.json");
-const serviceAccount = require("../../../permissions.json");
+const serviceAccount = require("../../../firebase/permissions.json");
 
 
 const app = !admin.apps.length
