@@ -36,4 +36,3 @@ next-env.d.ts
 
 # secret file
 permissions.json
-firebase.js
