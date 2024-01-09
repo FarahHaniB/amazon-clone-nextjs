@@ -2,7 +2,6 @@ import Header from "@/components/Header";
 import { getSession, useSession } from "next-auth/react";
 import React from "react";
 import db from "../../firebase/firebase";
-// import db from "../../firebase/firebase";
 import moment from "moment";
 
 const Orders = ({ orders }) => {
