@@ -1,7 +1,7 @@
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
-import "firebase/firestore";
+// import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -12,14 +12,6 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
-// const firebaseApp = firebase.initializeApp(firebaseConfig);
-
-// const db = firebaseApp.firestore();
-// const auth = firebase.auth();
-
-// export { auth, db };
-
-
 const app = !firebase.apps.length
   ? firebase.initializeApp(firebaseConfig)
   : firebase.app();
@@ -28,3 +20,18 @@ const db = app.firestore();
 
 export default db;
 
+// const firebaseApp = firebase.initializeApp(firebaseConfig);
+
+// const db = firebaseApp.firestore();
+// const auth = firebase.auth();
+
+// export { auth, db };
+
+
+// const app = !firebase.apps.length
+//   ? firebase.initializeApp(firebaseConfig)
+//   : firebase.app();
+
+// const db = app.firestore();
+
+// export default db;
